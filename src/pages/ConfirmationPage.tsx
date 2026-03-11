@@ -286,7 +286,7 @@ export default function ConfirmationPage() {
                           <h3 className="text-sm font-bold text-[hsl(var(--foreground))]">
                             项目 {node.project_id.slice(-4).toUpperCase()}
                           </h3>
-                          <TacticalBadge variant="info" className={`${getStatusColor(node.status)} text-[10px]`}>
+                          <TacticalBadge variant="tech" className={`${getStatusColor(node.status)} text-[10px]`}>
                             {getStatusLabel(node.status)}
                           </TacticalBadge>
                         </div>

@@ -426,11 +426,11 @@ export default function BenefitManagementPage() {
                               <h3 className="text-sm font-bold text-[hsl(var(--foreground))]">
                                 项目 {benefit.project_id.slice(-4).toUpperCase()}
                               </h3>
-                              <TacticalBadge variant="info" className={`${getStatusColor(benefit.status)} text-[10px]`}>
+                              <TacticalBadge variant="tech" className={`${getStatusColor(benefit.status)} text-[10px]`}>
                                 {getStatusLabel(benefit.status)}
                               </TacticalBadge>
                               {benefit.is_locked && (
-                                <TacticalBadge variant="info" className="text-[9px] px-1.5 py-0.5 bg-[hsl(var(--tech-cyan))]/10 text-[hsl(var(--tech-cyan))] border-[hsl(var(--tech-cyan))]/30">
+                                <TacticalBadge variant="tech" className="text-[9px] px-1.5 py-0.5 bg-[hsl(var(--tech-cyan))]/10 text-[hsl(var(--tech-cyan))] border-[hsl(var(--tech-cyan))]/30">
                                   <Lock className="w-2 h-2 inline mr-0.5" />
                                   已锁定
                                 </TacticalBadge>

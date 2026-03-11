@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ChevronRight, Plus, X } from 'lucide-react';
 import { TacticalBadge } from '@/components/ui/tactical';
-import { DealType } from '@/types';
+import { DealType, NodeStatus } from '@/types';
 import { useProjectsStore, useAuthStore } from '@/store';
 
 /**
@@ -209,6 +209,7 @@ export default function CreateProjectPage() {
         budget_min: parseInt(basicInfo.budget_min),
         budget_max: parseInt(basicInfo.budget_max),
         location: basicInfo.location,
+        status: NodeStatus.PENDING,
         tags: detailInfo.tags,
         // 根据类型添加特定字段
         ...(selectedType === DealType.PROJECT && {
@@ -369,7 +370,7 @@ export default function CreateProjectPage() {
                 <div className="relative flex items-center justify-between">
                   <div>
                     <div className="text-[10px] text-[hsl(var(--muted-foreground))] mb-1">对接类型</div>
-                    <TacticalBadge variant="info" className={`${typeConfig[selectedType].color} text-xs`}>
+                    <TacticalBadge variant="tech" className={`${typeConfig[selectedType].color} text-xs`}>
                       {typeConfig[selectedType].label}
                     </TacticalBadge>
                   </div>

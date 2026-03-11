@@ -4,10 +4,10 @@ import type {
   Benefit,
   BenefitStats,
   BenefitConfig,
-  BenefitStatus,
   AdjustmentRecord,
   Vote,
 } from '@/types/benefit';
+import { BenefitStatus } from '@/types/benefit';
 
 /**
  * 利益分配 Store
@@ -62,7 +62,7 @@ const mockBenefits: Benefit[] = [
     project_id: 'proj_001',
     introducer_ratio: 5.0,
     platform_ratio: 2.0,
-    status: 'APPROVED',
+    status: BenefitStatus.APPROVED,
     adjustment_count: 0,
     is_locked: false,
     votes: [],
@@ -80,7 +80,7 @@ const mockBenefits: Benefit[] = [
     project_id: 'proj_002',
     introducer_ratio: 3.5,
     platform_ratio: 2.5,
-    status: 'PENDING',
+    status: BenefitStatus.PENDING,
     adjustment_count: 1,
     is_locked: false,
     votes: [],
@@ -106,7 +106,7 @@ const mockBenefits: Benefit[] = [
     project_id: 'proj_003',
     introducer_ratio: 6.0,
     platform_ratio: 2.0,
-    status: 'LOCKED',
+    status: BenefitStatus.LOCKED,
     adjustment_count: 0,
     is_locked: true,
     votes: [],

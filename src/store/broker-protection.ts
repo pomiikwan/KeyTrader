@@ -4,8 +4,8 @@ import type {
   BrokerProtection,
   ProtectionStats,
   ViolationRecord,
-  ProtectionStatus,
 } from '@/types/broker-protection';
+import { ProtectionStatus, ProtectionType } from '@/types/broker-protection';
 
 /**
  * 推荐人保护 Store
@@ -56,8 +56,8 @@ const mockProtections: BrokerProtection[] = [
     introducer_virtual_id: 'IDABCD1234',
     project_owner_id: 'user_002',
     capital_provider_id: 'user_003',
-    protection_type: 'EXCLUSIVE',
-    protection_status: 'ACTIVE',
+    protection_type: ProtectionType.EXCLUSIVE,
+    protection_status: ProtectionStatus.ACTIVE,
     start_date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
     end_date: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000).toISOString(),
     validity_period_days: 30,
@@ -79,8 +79,8 @@ const mockProtections: BrokerProtection[] = [
     introducer_id: 'user_001',
     introducer_virtual_id: 'IDABCD1234',
     project_owner_id: 'user_004',
-    protection_type: 'TIME_LIMITED',
-    protection_status: 'COMPLETED',
+    protection_type: ProtectionType.TIME_LIMITED,
+    protection_status: ProtectionStatus.COMPLETED,
     start_date: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString(),
     end_date: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
     validity_period_days: 30,

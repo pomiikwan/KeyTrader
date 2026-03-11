@@ -55,16 +55,11 @@ class ApiClient {
         if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
 
-          const refreshSuccess = await useAuthStore.getState().refreshToken?.();
-          if (refreshSuccess) {
-            // 重新发送原始请求
-            return this.client(originalRequest);
-          } else {
-            // 刷新失败，退出登录
-            useAuthStore.getState().logout();
-            window.location.href = '/login';
-            return Promise.reject(error);
-          }
+          // TODO: 实现 token 刷新逻辑
+          // 目前暂时直接退出登录
+          useAuthStore.getState().logout();
+          window.location.href = '/login';
+          return Promise.reject(error);
         }
 
         return Promise.reject(error);

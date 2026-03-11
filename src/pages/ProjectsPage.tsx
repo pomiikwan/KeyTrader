@@ -126,9 +126,13 @@ export default function ProjectsPage() {
   const statusConfig = {
     ALL: { label: '全部', color: 'text-[hsl(var(--foreground))]' },
     [NodeStatus.PENDING]: { label: '待确认', color: 'text-yellow-500' },
-    [NodeStatus.IN_PROGRESS]: { label: '进行中', color: 'text-blue-500' },
+    [NodeStatus.PROJECT_CONFIRMED]: { label: '项目方已确认', color: 'text-blue-400' },
+    [NodeStatus.CAPITAL_CONFIRMED]: { label: '资金方已确认', color: 'text-cyan-500' },
+    [NodeStatus.INTRODUCER_CONFIRMED]: { label: '推荐人已确认', color: 'text-purple-500' },
     [NodeStatus.CONFIRMED]: { label: '已确认', color: 'text-green-500' },
+    [NodeStatus.IN_PROGRESS]: { label: '进行中', color: 'text-blue-500' },
     [NodeStatus.COMPLETED]: { label: '已完成', color: 'text-gray-500' },
+    [NodeStatus.CANCELLED]: { label: '已取消', color: 'text-red-500' },
   };
 
   const formatBudget = (budget_min: number, budget_max: number) => {
@@ -307,12 +311,12 @@ export default function ProjectsPage() {
                     {/* 标签行 */}
                     <div className="flex items-center gap-2 mb-3">
                       {/* 类型标签 */}
-                      <TacticalBadge variant="info" className={`${typeInfo.color} text-[10px] px-2 py-0.5`}>
+                      <TacticalBadge variant="tech" className={`${typeInfo.color} text-[10px] px-2 py-0.5`}>
                         {typeInfo.label}
                       </TacticalBadge>
 
                       {/* 状态标签 */}
-                      <TacticalBadge variant="info" className={`${statusInfo.color} text-[10px] px-2 py-0.5`}>
+                      <TacticalBadge variant="tech" className={`${statusInfo.color} text-[10px] px-2 py-0.5`}>
                         {statusInfo.label}
                       </TacticalBadge>
 

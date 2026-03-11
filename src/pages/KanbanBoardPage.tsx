@@ -19,10 +19,14 @@ export default function KanbanBoardPage() {
   // 状态配置
   const statusConfig = {
     ALL: { label: '全部', color: 'text-[hsl(var(--foreground))]' },
-    [NodeStatus.PENDING]: { label: '待处理', color: 'text-yellow-500' },
-    [NodeStatus.IN_PROGRESS]: { label: '进行中', color: 'text-blue-500' },
+    [NodeStatus.PENDING]: { label: '待确认', color: 'text-yellow-500' },
+    [NodeStatus.PROJECT_CONFIRMED]: { label: '项目方已确认', color: 'text-blue-400' },
+    [NodeStatus.CAPITAL_CONFIRMED]: { label: '资金方已确认', color: 'text-cyan-500' },
+    [NodeStatus.INTRODUCER_CONFIRMED]: { label: '推荐人已确认', color: 'text-purple-500' },
     [NodeStatus.CONFIRMED]: { label: '已确认', color: 'text-green-500' },
+    [NodeStatus.IN_PROGRESS]: { label: '进行中', color: 'text-blue-500' },
     [NodeStatus.COMPLETED]: { label: '已完成', color: 'text-gray-500' },
+    [NodeStatus.CANCELLED]: { label: '已取消', color: 'text-red-500' },
   };
 
   // 优先级配置
@@ -319,12 +323,12 @@ export default function KanbanBoardPage() {
                       {/* 顶部信息行 */}
                       <div className="flex items-start justify-between mb-3">
                         {/* 状态标签 */}
-                        <TacticalBadge variant="info" className={`${statusInfo.color} text-[10px] px-2 py-0.5`}>
+                        <TacticalBadge variant="tech" className={`${statusInfo.color} text-[10px] px-2 py-0.5`}>
                           {statusInfo.label}
                         </TacticalBadge>
 
                         {/* 优先级标签 */}
-                        <TacticalBadge variant="info" className={`${priority.color} ${priority.bg} text-[10px] px-2 py-0.5`}>
+                        <TacticalBadge variant="tech" className={`${priority.color} ${priority.bg} text-[10px] px-2 py-0.5`}>
                           {priority.label}优先级
                         </TacticalBadge>
                       </div>

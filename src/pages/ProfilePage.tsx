@@ -2,9 +2,40 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { User, Shield, Radio, Lock, Bell, Settings, HelpCircle, LogOut, Eye, EyeOff, Sparkles, DollarSign, Users, FileText, CheckCircle2 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useAuthStore, useIdentityStore } from '@/store';
 import { UserRole, getUserRoles, getRoleLabel } from '@/types';
 import { TacticalCard } from '@/components/ui/tactical';
+
+// 菜单项类型定义
+interface BaseMenuItem {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+}
+
+interface NavigationMenuItem extends BaseMenuItem {
+  path: string;
+  action?: never;
+  danger?: never;
+}
+
+interface ActionMenuItem extends BaseMenuItem {
+  path?: never;
+  action: string;
+  danger: boolean;
+}
+
+type MenuItem = NavigationMenuItem | ActionMenuItem;
+
+// 类型守卫函数
+function isActionMenuItem(item: MenuItem): item is ActionMenuItem {
+  return 'action' in item && item.action !== undefined;
+}
+
+function isNavigationMenuItem(item: MenuItem): item is NavigationMenuItem {
+  return 'path' in item && item.path !== undefined;
+}
 
 /**
  * 个人中心页面 - 移动端军事科技风格
@@ -243,38 +274,42 @@ export default function ProfilePage() {
             transition={{ delay: 0.2 + groupIndex * 0.1 }}
             className="bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))] overflow-hidden"
           >
-            {group.map((item, index) => (
-              <motion.button
-                key={index}
-                whileTap={{ scale: 0.98 }}
-                className={`w-full flex items-center gap-3 p-4 transition-colors ${
-                  item.danger
-                    ? 'text-[hsl(var(--alert-red))]'
-                    : 'text-[hsl(var(--foreground))]'
-                } ${index < group.length - 1 ? 'border-b border-[hsl(var(--border))]' : ''}`}
-                onClick={() => {
-                  if (item.action === 'logout') {
-                    handleLogout();
-                  } else if (item.path) {
-                    navigate(item.path);
-                  }
-                }}
-              >
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                  item.danger
-                    ? 'bg-[hsl(var(--alert-red))]/20'
-                    : 'bg-[hsl(var(--tech-cyan))]/20'
-                }`}>
-                  <item.icon className={`w-4 h-4 ${item.danger ? 'text-[hsl(var(--alert-red))]' : 'text-[hsl(var(--tech-cyan))]'}`} />
-                </div>
-                <div className="flex-1 text-left">
-                  <div className="text-sm font-semibold">{item.title}</div>
-                  <div className={`text-[10px] ${item.danger ? 'text-[hsl(var(--alert-red))]/70' : 'text-[hsl(var(--muted-foreground))]'}`}>
-                    {item.desc}
+            {group.map((item, index) => {
+              const isDanger = isActionMenuItem(item) && item.danger;
+
+              return (
+                <motion.button
+                  key={index}
+                  whileTap={{ scale: 0.98 }}
+                  className={`w-full flex items-center gap-3 p-4 transition-colors ${
+                    isDanger
+                      ? 'text-[hsl(var(--alert-red))]'
+                      : 'text-[hsl(var(--foreground))]'
+                  } ${index < group.length - 1 ? 'border-b border-[hsl(var(--border))]' : ''}`}
+                  onClick={() => {
+                    if (isActionMenuItem(item) && item.action === 'logout') {
+                      handleLogout();
+                    } else if (isNavigationMenuItem(item) && item.path) {
+                      navigate(item.path);
+                    }
+                  }}
+                >
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    isDanger
+                      ? 'bg-[hsl(var(--alert-red))]/20'
+                      : 'bg-[hsl(var(--tech-cyan))]/20'
+                  }`}>
+                    <item.icon className={`w-4 h-4 ${isDanger ? 'text-[hsl(var(--alert-red))]' : 'text-[hsl(var(--tech-cyan))]'}`} />
                   </div>
-                </div>
-              </motion.button>
-            ))}
+                  <div className="flex-1 text-left">
+                    <div className="text-sm font-semibold">{item.title}</div>
+                    <div className={`text-[10px] ${isDanger ? 'text-[hsl(var(--alert-red))]/70' : 'text-[hsl(var(--muted-foreground))]'}`}>
+                      {item.desc}
+                    </div>
+                  </div>
+                </motion.button>
+              );
+            })}
           </motion.div>
         ))}
       </section>

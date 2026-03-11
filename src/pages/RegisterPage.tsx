@@ -153,7 +153,7 @@ export default function RegisterPage() {
             安全 · 匿名 · 智能
           </p>
           <div className="mt-4 flex items-center justify-center gap-2">
-            <TacticalBadge variant="info">STEP {step}/2</TacticalBadge>
+            <TacticalBadge variant="tech">STEP {step}/2</TacticalBadge>
             <span className="text-xs text-gray-400">
               {step === 1 ? '验证邀请码' : '完善信息'}
             </span>

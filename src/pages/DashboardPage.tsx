@@ -158,7 +158,7 @@ export default function DashboardPage() {
           {/* 角色标签 */}
           <div className="relative mt-3 flex flex-wrap gap-1">
             {roleBadges.map((badge, index) => (
-              <TacticalBadge key={index} variant="info" className={`${badge.color} text-xs`}>
+              <TacticalBadge key={index} variant="tech" className={`${badge.color} text-xs`}>
                 {badge.label}
               </TacticalBadge>
             ))}

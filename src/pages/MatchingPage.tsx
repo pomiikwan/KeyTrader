@@ -289,7 +289,7 @@ export default function MatchingPage() {
                               <h3 className="text-sm font-bold text-[hsl(var(--foreground))]">
                                 {match.requester_virtual_id} ↔ {match.target_virtual_id}
                               </h3>
-                              <TacticalBadge variant="info" className={`${getStatusColor(match.status)} text-[10px]`}>
+                              <TacticalBadge variant="tech" className={`${getStatusColor(match.status)} text-[10px]`}>
                                 {getStatusLabel(match.status)}
                               </TacticalBadge>
                             </div>

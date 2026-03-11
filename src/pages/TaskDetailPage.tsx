@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -15,6 +15,7 @@ import {
   Edit3,
   Save,
   X,
+  XCircle,
 } from 'lucide-react';
 import { useAuthStore } from '@/store';
 import { NodeStatus } from '@/types';
@@ -87,8 +88,12 @@ export default function TaskDetailPage() {
 
   // 获取状态标签
   const getStatusLabel = (status: NodeStatus) => {
-    const labels = {
+    const labels: Record<NodeStatus, string> = {
       [NodeStatus.PENDING]: '待开始',
+      [NodeStatus.PROJECT_CONFIRMED]: '项目方已确认',
+      [NodeStatus.CAPITAL_CONFIRMED]: '资金方已确认',
+      [NodeStatus.INTRODUCER_CONFIRMED]: '推荐人已确认',
+      [NodeStatus.CONFIRMED]: '已确认',
       [NodeStatus.IN_PROGRESS]: '进行中',
       [NodeStatus.COMPLETED]: '已完成',
       [NodeStatus.CANCELLED]: '已取消',
@@ -205,7 +210,7 @@ export default function TaskDetailPage() {
                   {mockTask.title}
                 </h2>
               )}
-              <TacticalBadge variant="info" className={`${getStatusColor(mockTask.status)} text-[10px]`}>
+              <TacticalBadge variant="tech" className={`${getStatusColor(mockTask.status)} text-[10px]`}>
                 {getStatusLabel(mockTask.status)}
               </TacticalBadge>
             </div>
@@ -289,11 +294,11 @@ export default function TaskDetailPage() {
         </TacticalCard>
 
         {/* 评论区域 */}
-        <TacticalCard
-          title={`评论 (${comments.length})`}
-          className="corner-deco"
-          action={
-            !showAddComment && (
+        <TacticalCard className="corner-deco">
+          {/* 标题栏 */}
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-bold text-[hsl(var(--foreground))]">评论 ({comments.length})</h3>
+            {!showAddComment && (
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setShowAddComment(true)}
@@ -302,9 +307,9 @@ export default function TaskDetailPage() {
                 <Plus className="w-3 h-3" />
                 添加
               </motion.button>
-            )
-          }
-        >
+            )}
+          </div>
+
           <div className="space-y-3">
             {/* 添加评论输入框 */}
             <AnimatePresence>

@@ -402,7 +402,7 @@ export default function BrokerProtectionPage() {
                               <h3 className="text-sm font-bold text-[hsl(var(--foreground))]">
                                 项目 {prot.project_id.slice(-4).toUpperCase()}
                               </h3>
-                              <TacticalBadge variant="info" className={`${getStatusColor(prot.protection_status)} text-[10px]`}>
+                              <TacticalBadge variant="tech" className={`${getStatusColor(prot.protection_status)} text-[10px]`}>
                                 {getStatusLabel(prot.protection_status)}
                               </TacticalBadge>
                             </div>
@@ -505,7 +505,7 @@ export default function BrokerProtectionPage() {
                               {term.title}
                             </h4>
                             {term.is_required && (
-                              <TacticalBadge variant="info" className="text-[9px] px-1.5 py-0.5 bg-[hsl(var(--destructive))]/10 text-[hsl(var(--destructive))] border-[hsl(var(--destructive))]/30">
+                              <TacticalBadge variant="tech" className="text-[9px] px-1.5 py-0.5 bg-[hsl(var(--destructive))]/10 text-[hsl(var(--destructive))] border-[hsl(var(--destructive))]/30">
                                 必选
                               </TacticalBadge>
                             )}

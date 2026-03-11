@@ -4,9 +4,9 @@ import type {
   MatchRecommendation,
   MatchStats,
   MatchPreferences,
-  MatchStatus,
   MatchHistory,
 } from '@/types/matching';
+import { MatchStatus, MatchType } from '@/types/matching';
 
 /**
  * AI 智能匹配 Store
@@ -54,8 +54,8 @@ function generateId(): string {
 const mockMatches: MatchRecommendation[] = [
   {
     id: 'match_001',
-    match_type: 'PROJECT_TO_CAPITAL',
-    status: 'PENDING',
+    match_type: MatchType.PROJECT_TO_CAPITAL,
+    status: MatchStatus.PENDING,
     requester_id: 'user_002',
     requester_virtual_id: 'IDPROJ5678',
     requester_type: 'PROJECT_OWNER',
@@ -98,8 +98,8 @@ const mockMatches: MatchRecommendation[] = [
   },
   {
     id: 'match_002',
-    match_type: 'CAPITAL_TO_PROJECT',
-    status: 'VIEWED',
+    match_type: MatchType.CAPITAL_TO_PROJECT,
+    status: MatchStatus.VIEWED,
     requester_id: 'user_003',
     requester_virtual_id: 'IDCAPT9012',
     requester_type: 'CAPITAL_PROVIDER',
@@ -141,8 +141,8 @@ const mockMatches: MatchRecommendation[] = [
   },
   {
     id: 'match_003',
-    match_type: 'PROJECT_TO_CAPITAL',
-    status: 'ACCEPTED',
+    match_type: MatchType.PROJECT_TO_CAPITAL,
+    status: MatchStatus.ACCEPTED,
     requester_id: 'user_004',
     requester_virtual_id: 'IDPROJ3456',
     requester_type: 'PROJECT_OWNER',
@@ -191,7 +191,7 @@ const mockMatches: MatchRecommendation[] = [
  * 默认匹配偏好
  */
 const defaultPreferences: Omit<MatchPreferences, 'id' | 'user_id' | 'updated_at'> = {
-  preferred_deal_types: ['PROJECT_TO_CAPITAL', 'CAPITAL_TO_PROJECT'],
+  preferred_deal_types: [MatchType.PROJECT_TO_CAPITAL, MatchType.CAPITAL_TO_PROJECT],
   preferred_locations: [],
   budget_range: {
     min: 0,
@@ -286,8 +286,8 @@ export const useMatchingStore = create<MatchingStore>()(
         set({ selectedMatch: match });
 
         // 如果是待处理状态，自动标记为已查看
-        if (match && match.status === 'PENDING') {
-          get().updateMatchStatus(matchId, 'VIEWED');
+        if (match && match.status === MatchStatus.PENDING && matchId) {
+          get().updateMatchStatus(matchId, MatchStatus.VIEWED);
         }
       },
 
