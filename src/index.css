@@ -1,0 +1,615 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 军事科技金融融合主题 - 暗色战术风格 */
+    
+    /* 主色调 - 深墨绿军事基底 */
+    --background: 150 20% 6%;
+    --foreground: 140 30% 92%;
+    
+    /* 卡片 - 战术面板 */
+    --card: 150 18% 8%;
+    --card-foreground: 140 30% 92%;
+    
+    /* 弹出层 */
+    --popover: 150 18% 10%;
+    --popover-foreground: 140 30% 92%;
+    
+    /* 主强调色 - 科技青 */
+    --primary: 175 85% 45%;
+    --primary-foreground: 150 20% 6%;
+    
+    /* 次要色 - 军事橄榄 */
+    --secondary: 80 35% 25%;
+    --secondary-foreground: 140 30% 92%;
+    
+    /* 静音色 - 战术灰 */
+    --muted: 150 10% 15%;
+    --muted-foreground: 140 10% 55%;
+    
+    /* 强调色 - 金融金 */
+    --accent: 45 90% 50%;
+    --accent-foreground: 150 20% 6%;
+    
+    /* 危险色 - 战术红 */
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* 边框 - 战术网格 */
+    --border: 150 15% 18%;
+    --input: 150 15% 15%;
+    --ring: 175 85% 45%;
+    --radius: 0.5rem;
+    
+    /* 侧边栏 */
+    --sidebar-background: 150 18% 8%;
+    --sidebar-foreground: 140 30% 92%;
+    --sidebar-primary: 175 85% 45%;
+    --sidebar-primary-foreground: 150 20% 6%;
+    --sidebar-accent: 150 15% 15%;
+    --sidebar-accent-foreground: 140 30% 92%;
+    --sidebar-border: 150 15% 18%;
+    --sidebar-ring: 175 85% 45%;
+    
+    /* 自定义军事科技金融色彩 */
+    --tactical-green: 150 60% 40%;
+    --tech-cyan: 175 90% 50%;
+    --finance-gold: 45 95% 55%;
+    --military-olive: 80 40% 30%;
+    --radar-glow: 175 100% 60%;
+    --alert-red: 0 80% 55%;
+    --stealth-black: 150 20% 5%;
+    --hud-blue: 200 90% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+/* 军事科技金融融合风格特效 */
+
+/* 战术扫描线效果 */
+.tactical-scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.tactical-scanline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--tech-cyan)), transparent);
+  animation: scanline 3s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* HUD网格背景 */
+.hud-grid {
+  background-image: 
+    linear-gradient(rgba(20, 255, 200, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 255, 200, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* 科技发光边框 */
+.tech-glow {
+  box-shadow: 
+    0 0 5px hsl(var(--tech-cyan) / 0.3),
+    0 0 20px hsl(var(--tech-cyan) / 0.1),
+    inset 0 0 10px hsl(var(--tech-cyan) / 0.05);
+}
+
+/* 金融金边框 */
+.finance-border {
+  border: 1px solid hsl(var(--finance-gold) / 0.3);
+  box-shadow: 
+    0 0 10px hsl(var(--finance-gold) / 0.1),
+    inset 0 0 20px hsl(var(--finance-gold) / 0.02);
+}
+
+/* 战术角标 */
+.tactical-corner,
+.corner-deco {
+  position: relative;
+}
+
+.tactical-corner::before,
+.tactical-corner::after,
+.corner-deco::before,
+.corner-deco::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid hsl(var(--tech-cyan));
+}
+
+.tactical-corner::before,
+.corner-deco::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.tactical-corner::after,
+.corner-deco::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* 军事数字字体效果 */
+.military-digital {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* 雷达脉冲动画 */
+.radar-pulse {
+  animation: radarPulse 2s ease-out infinite;
+}
+
+@keyframes radarPulse {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--tech-cyan) / 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 20px hsl(var(--tech-cyan) / 0);
+  }
+}
+
+/* 数据流动效果 */
+.data-flow {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    hsl(var(--tech-cyan) / 0.1) 50%, 
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: dataFlow 2s linear infinite;
+}
+
+@keyframes dataFlow {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* 战术状态指示器 */
+.status-indicator {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-indicator.active {
+  background: hsl(var(--tech-cyan));
+  box-shadow: 0 0 10px hsl(var(--tech-cyan));
+  animation: statusBlink 1.5s ease-in-out infinite;
+}
+
+.status-indicator.warning {
+  background: hsl(var(--finance-gold));
+  box-shadow: 0 0 10px hsl(var(--finance-gold));
+}
+
+.status-indicator.danger {
+  background: hsl(var(--alert-red));
+  box-shadow: 0 0 10px hsl(var(--alert-red));
+}
+
+@keyframes statusBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* 军事级卡片 */
+.tactical-card {
+  background: linear-gradient(145deg, 
+    hsl(var(--card)) 0%, 
+    hsl(var(--stealth-black)) 100%);
+  border: 1px solid hsl(var(--border));
+  position: relative;
+}
+
+.tactical-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    hsl(var(--tech-cyan) / 0.5), 
+    transparent);
+}
+
+/* 金融数据高亮 */
+.finance-highlight {
+  color: hsl(var(--finance-gold));
+  text-shadow: 0 0 10px hsl(var(--finance-gold) / 0.3);
+}
+
+/* 科技蓝高亮 */
+.tech-highlight {
+  color: hsl(var(--tech-cyan));
+  text-shadow: 0 0 10px hsl(var(--tech-cyan) / 0.3);
+}
+
+/* 军事绿高亮 */
+.tactical-highlight {
+  color: hsl(var(--tactical-green));
+  text-shadow: 0 0 10px hsl(var(--tactical-green) / 0.3);
+}
+
+/* ==================== 移动端优化工具类 ==================== */
+
+/* 隐藏滚动条 */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* 安全区域适配 */
+.h-safe-area-inset-bottom {
+  height: env(safe-area-inset-bottom, 0);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+/* 文字截断 - Tailwind 已支持，保留备用 */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 触摸优化 */
+@media (hover: none) {
+  .hover\:bg-card:active {
+    background-color: hsl(var(--muted));
+  }
+}
+
+/* 动画性能优化 */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* 防止文本选择 */
+.select-none {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* 按钮点击效果优化 */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 输入框样式优化 - 使用 CSS 变量 */
+input,
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: hsl(var(--tech-cyan));
+  box-shadow: 0 0 0 2px hsl(var(--tech-cyan) / 0.2);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+/* ==================== 渐变文字效果 ==================== */
+
+.gradient-tech {
+  background: linear-gradient(135deg, hsl(var(--tech-cyan)) 0%, hsl(var(--hud-blue)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-finance {
+  background: linear-gradient(135deg, hsl(var(--finance-gold)) 0%, hsl(35 90% 50%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-military {
+  background: linear-gradient(135deg, hsl(var(--military-olive)) 0%, hsl(var(--tactical-green)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==================== 军事科技金融卡片样式 ==================== */
+
+.shadow-tactical {
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    0 0 0 1px hsl(var(--border));
+}
+
+/* 玻璃态效果 - 战术HUD */
+.glass-hud {
+  background: linear-gradient(145deg,
+      hsl(var(--popover) / 0.95) 0%,
+      hsl(var(--background) / 0.98) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsl(var(--tech-cyan) / 0.3);
+}
+
+/* ==================== 标签样式 ==================== */
+
+.tag-military {
+  background: hsl(var(--military-olive) / 0.4);
+  color: hsl(var(--military-olive) / 1.4);
+  border: 1px solid hsl(var(--military-olive));
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tag-tech {
+  background: hsl(var(--tech-cyan) / 0.15);
+  color: hsl(var(--tech-cyan));
+  border: 1px solid hsl(var(--tech-cyan) / 0.4);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tag-finance {
+  background: hsl(var(--finance-gold) / 0.15);
+  color: hsl(var(--finance-gold));
+  border: 1px solid hsl(var(--finance-gold) / 0.4);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tag-urgent {
+  background: hsl(var(--alert-red) / 0.25);
+  color: hsl(var(--alert-red));
+  border: 1px solid hsl(var(--alert-red) / 0.5);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  animation: urgentPulse 1s ease-in-out infinite;
+}
+
+@keyframes urgentPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px hsl(var(--alert-red) / 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 15px hsl(var(--alert-red) / 0.5);
+  }
+}
+
+/* ==================== 军事边框样式 ==================== */
+
+.border-tactical {
+  border: 1px solid hsl(var(--border));
+  position: relative;
+}
+
+.border-tactical::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent,
+      hsl(var(--tech-cyan) / 0.5),
+      transparent);
+}
+
+/* ==================== 金额和代码样式 ==================== */
+
+.amount-finance {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  color: hsl(var(--finance-gold));
+  text-shadow: 0 0 10px hsl(var(--finance-gold) / 0.2);
+}
+
+.code-tech {
+  font-family: 'Courier New', monospace;
+  color: hsl(var(--tech-cyan));
+  background: hsl(var(--background));
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  border: 1px solid hsl(var(--tech-cyan) / 0.3);
+}
+
+/* ==================== 状态栏和导航栏样式 ==================== */
+
+.status-bar-military {
+  background: linear-gradient(180deg,
+      hsl(var(--card)) 0%,
+      hsl(var(--background)) 100%);
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.nav-tactical {
+  background: linear-gradient(180deg,
+      hsl(var(--card)) 0%,
+      hsl(var(--background)) 100%);
+  border-top: 1px solid hsl(var(--border));
+}
+
+/* ==================== 进度条和按钮样式 ==================== */
+
+.progress-tactical {
+  background: hsl(var(--muted));
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-tactical-bar {
+  background: linear-gradient(90deg,
+      hsl(var(--tech-cyan) / 0.8) 0%,
+      hsl(var(--tech-cyan)) 100%);
+  box-shadow: 0 0 10px hsl(var(--tech-cyan) / 0.3);
+}
+
+.btn-tactical {
+  background: linear-gradient(145deg,
+      hsl(var(--tech-cyan) / 0.7) 0%,
+      hsl(var(--tech-cyan) / 0.8) 100%);
+  color: hsl(var(--background));
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-tactical::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
+  transition: left 0.5s;
+}
+
+.btn-tactical:hover::before {
+  left: 100%;
+}
+
+/* ==================== 分隔线样式 ==================== */
+
+.divider-tactical {
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent,
+      hsl(var(--border) / 1.5),
+      transparent);
+}
+
+/* ==================== 自定义动画 ==================== */
+
+/* 脉冲动画 - 雷达 */
+@keyframes pulse-radar {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.pulse-radar {
+  animation: pulse-radar 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* 滑动动画 */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* 淡入动画 */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* ==================== 滚动条军事风格 ==================== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--stealth-black));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--tech-cyan) / 0.3);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--tech-cyan) / 0.5);
+}
